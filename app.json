@@ -2,6 +2,7 @@
   "expo": {
     "name": "test",
     "slug": "test",
+    "owner": "ids.js",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,10 +25,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ids.js.test"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "48b2a310-4396-4980-bcc4-0f585a37ffe7"
+      }
     }
   }
 }
