@@ -3,6 +3,10 @@ export const getUrl = (lat,lon,key = API_KEY)=>{
     return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
 }
 
+export const getManyUrl = (lat,lon,cnt=1,key = API_KEY)=>{
+    return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric&cnt=${cnt}`
+}
+
 export const getWeather = (code) =>{
     switch(true) {
         case (code>=200 && code<300):{

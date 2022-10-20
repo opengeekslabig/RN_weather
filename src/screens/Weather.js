@@ -2,10 +2,10 @@ import React,{useMemo} from 'react'
 import {StyleSheet,Text,View,Image} from 'react-native'
 import * as PropTypes from "prop-types";
 import { LinearGradient } from 'expo-linear-gradient';
-import {getWeather} from "../config";
+import {getWeather} from "../../config";
 
 
-const Weather = ({temp,weather,name,wind}) =>{
+const Weather = ({temp,weather,name,wind,time}) =>{
     const getMapped = useMemo(()=>getWeather(weather.id),[weather])
     return (
         <LinearGradient
@@ -13,6 +13,9 @@ const Weather = ({temp,weather,name,wind}) =>{
             style={styles.container}
             >
             <View style={styles.halfContainer}>
+                {time && <View style={styles.time}>
+                    <Text style={styles.timeTitle}>{time}</Text>
+                </View>}
                 <Image
                     style={styles.logo}
                     source={{
@@ -31,6 +34,11 @@ const Weather = ({temp,weather,name,wind}) =>{
 }
 
 const styles = StyleSheet.create({
+    timeTitle:{
+        color: 'white',
+        fontSize:28,
+        fontWeight:'bold',
+    },
     container:{
         flex:1,
         justifyContent:'center',
@@ -77,6 +85,7 @@ Weather.propTypes = {
         icon: PropTypes.string.isRequired,
     }),
     name:PropTypes.string.isRequired,
+    time:PropTypes.string.isRequired,
     wind: PropTypes.number.isRequired,
 }
 export default Weather;
