@@ -12,7 +12,7 @@ export default function Navigator({weathers}){
                 <Tab.Navigator
                     initialRouteName={weathers[0].time}
                 >{
-                    weathers.map(el=>(
+                    weathers.map((el,i)=>(
                         <Tab.Screen
                             key={el.time}
                             name={el.time}
@@ -28,6 +28,7 @@ export default function Navigator({weathers}){
                                     name={el.name}
                                     wind={el.wind}
                                     time={el.time}
+                                    home={i>0 ? weathers[0].time : null}
                                     />}
                         </Tab.Screen>
                     ))

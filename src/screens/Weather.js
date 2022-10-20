@@ -1,11 +1,14 @@
 import React,{useMemo} from 'react'
-import {StyleSheet,Text,View,Image} from 'react-native'
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
 import * as PropTypes from "prop-types";
 import { LinearGradient } from 'expo-linear-gradient';
+import { AntDesign } from '@expo/vector-icons';
 import {getWeather} from "../../config";
+import {useNavigation} from "@react-navigation/native";
 
 
-const Weather = ({temp,weather,name,wind,time}) =>{
+const Weather = ({temp,weather,name,wind,time,home}) =>{
+    const navigation = useNavigation();
     const getMapped = useMemo(()=>getWeather(weather.id),[weather])
     return (
         <LinearGradient
@@ -28,6 +31,9 @@ const Weather = ({temp,weather,name,wind,time}) =>{
                 <Text style={styles.subTitle}>Местоположение: {name}</Text>
                 <Text style={styles.title}>{getMapped.title}</Text>
                 <Text style={styles.subTitle}>Скорость ветра: {wind} м/с</Text>
+                {home && <TouchableOpacity style={styles.backBtn} onPress={()=>navigation.navigate(home)}>
+                    <AntDesign name="leftcircleo" size={34} color="white"/>
+                </TouchableOpacity>}
             </View>
         </LinearGradient>
     )
@@ -38,6 +44,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize:28,
         fontWeight:'bold',
+    },
+    backBtn:{
+        position:'absolute',
+        right: 30,
+        bottom:30,
     },
     container:{
         flex:1,
